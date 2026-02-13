@@ -57,7 +57,7 @@ const topicRescuerData = {
         "最近身體幾好嘛？有無邊度唔舒服？", "得閒去邊度飲茶多？有無好介紹？", "當年你地結婚擺酒係點架？有無相睇下？", "依家啲後生仔女歌手，你識唔識？", "有無睇《中年好聲音》？你覺得邊個唱得好？", "你記唔記得我細個做過咩百厭野？", "最近天氣轉涼，有無煲湯飲？", "表哥/表姐最近點呀？好耐無見。", "你以前返工個陣係點架？辛苦唔辛苦？", "今晚想食中菜定西餐？", "新年/過節有無打算去邊度玩？", "你有無玩Facebook/WhatsApp Sticker呀？", "最近菜心好似好貴，你有無去街市？", "覺唔覺得依家啲電視劇無以前咁好睇？", "你以前拍拖係去邊度玩多？", "有無想去邊度旅行？帶你去呀。", "個孫最近讀書點呀？乖唔乖？", "你覺得以前香港好定依家好？", "有無食過最近好興個間餅店？", "得閒教我整你最拿手個道菜呀！"
     ],
     peers: [
-        "黎緊有無打算去日本/泰國旅行？", "最近有無睇《九龍城寨》或者港產片？", "抽唔抽到居屋/新樓？定係打算租樓住？", "有無買美股/Crypto？最近個市點？", "覺唔覺得最近好多兩餸飯？邊間好食？", "放假通常去邊度Hea？", "有無追開Netflix/Disney+邊套劇？", "幾時一齊去唱K/打邊爐？", "公司最近忙唔忙？有無OT？", "有無玩開咩交友App？", "覺唔覺得依家啲演唱會飛好難搶？", "最近有無做Gym/運動？", "如果中六合彩頭獎，你會做咩先？", "有無去過深圳Costco/山姆超市？", "依家人工大約去到邊個位？", "有無養寵物？定係想養？", "覺唔覺得依家出街食飯好貴？", "你鍾意Work From Home定返Office？", "有無聽過最近個單網上熱話？", "幾時結婚/擺酒呀？"
+        "黎緊有無打算去日本/泰國旅行？", "最近有無睇港產片？", "抽唔抽到居屋/新樓？定係打算租樓住？", "有無買美股/Crypto？最近個市點？", "覺唔覺得最近好多兩餸飯？邊間好食？", "放假通常去邊度Hea？", "有無追開Netflix/Disney+邊套劇？", "幾時一齊去唱K/打邊爐？", "公司最近忙唔忙？有無OT？", "有無玩開咩交友App？", "覺唔覺得依家啲演唱會飛好難搶？", "最近有無做Gym/運動？", "如果中六合彩頭獎，你會做咩先？", "有無去過深圳Costco/山姆超市？", "依家人工大約去到邊個位？", "有無養寵物？定係想養？", "覺唔覺得依家出街食飯好貴？", "你鍾意Work From Home定返Office？", "有無聽過最近個單網上熱話？", "幾時結婚/擺酒呀？"
     ],
     new_colleague: [
         "你住邊區架？返工搭車要幾耐？", "附近Lunch有無咩好野食推介？", "你上一份工係做邊行架？", "平時放假鍾意做咩多？", "你覺得呢度Office冷氣凍唔凍？", "有無英文名？點稱呼你方便啲？", "你用開Mac機定Windows多？", "今個Weekend有無節目呀？", "你鍾意飲咖啡定茶？", "有無睇開邊隊波/運動？", "公司附近的早餐有無好介紹？", "你之前有無用過呢個System？", "覺得呢度工作節奏習唔習慣？", "有無興趣一齊夾單叫外賣？", "你知唔知公司Wifi Password係咩？", "最近有無去旅行？", "你係咪都係做開呢個Post？", "有無養貓狗？", "你鍾意帶飯定出街食？", "收工通常會去邊度玩？"
@@ -472,7 +472,7 @@ function renderSeatingChart() {
         </div>
         <div class="mt-3 text-xs text-red-700 space-y-1">
             <div>排位重點：主家席向門口，主客喺主家右手邊，副客喺主家左手邊。</div>
-            <div>買單/阿四位通常靠近門口，方便招呼樓面同埋埋單。</div>
+            <div>阿四位通常靠近門口，方便叫樓面同埋單。</div>
         </div>
     `;
 }
@@ -559,7 +559,7 @@ function renderPreferenceMemo() {
     ));
 
     if (filteredData.length === 0) {
-        list.innerHTML = `<div class="text-sm text-gray-400 text-center py-6">未有任何喜好記錄，撳「新增」開始記低人情路線圖。</div>`;
+        list.innerHTML = `<div class="text-sm text-gray-400 text-center py-6">未有任何喜好記錄，撳「新增」開始記低</div>`;
         return;
     }
 
@@ -572,8 +572,7 @@ function renderPreferenceMemo() {
                         <span class="font-bold text-base">${item.name}</span>
                         <span class="text-[11px] px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">${item.category || '其他'}</span>
                     </div>
-                    <div class="text-xs text-gray-500 mt-1">需要：${item.needs || '未填'}</div>
-                    <div class="text-[11px] text-gray-400 mt-1">記錄日期：${item.createdAt || '未記錄'}</div>
+    
                 </div>
                 <div class="flex gap-2 shrink-0">
                     <button onclick="editPreference(${item.id})" class="text-xs text-blue-500 font-medium">編輯</button>
@@ -582,8 +581,9 @@ function renderPreferenceMemo() {
             </div>
             <div class="mt-2 space-y-1">
                 <div class="text-xs text-gray-600"><span class="text-gray-400">鍾意：</span>${item.like || '—'}</div>
-                <div class="text-xs text-gray-600"><span class="text-gray-400">避雷：</span>${item.hate || '—'}</div>
+                <div class="text-xs text-gray-600"><span class="text-gray-400">討厭：</span>${item.hate || '—'}</div>
                 <div class="text-xs text-gray-600"><span class="text-gray-400">備忘：</span>${item.memo || '—'}</div>
+                <div class="text-[11px] text-gray-400 mt-1">最後記錄日期：${item.createdAt || '未記錄'}</div>
             </div>
         </div>
     `).join('');
@@ -652,6 +652,7 @@ function savePreference(e) {
 function editPreference(id) {
     const item = preferenceData.find(row => row.id === id);
     if (!item) return;
+    closeModal('preference-list-modal');
     document.getElementById('preference-modal').classList.remove('hidden');
     document.getElementById('preference-id').value = item.id;
     document.getElementById('preference-name').value = item.name || '';
@@ -663,7 +664,7 @@ function editPreference(id) {
 }
 
 function deletePreference(id) {
-    if (!confirm('確定刪除此偏好記錄？')) return;
+    if (!confirm('確定刪除此偏好記錄？（注意：無法還原！）')) return;
     preferenceData = preferenceData.filter(item => item.id !== id);
     localStorage.setItem('preferenceData', JSON.stringify(preferenceData));
     renderPreferenceMemo();
@@ -713,12 +714,12 @@ function exportMasterCRM() {
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
-    link.setAttribute('download', `世界仔_人脈總表_${new Date().toISOString().slice(0,10)}.csv`);
+    link.setAttribute('download', `世界仔_人情數簿及喜好筆記_${new Date().toISOString().slice(0,10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    showToast('CRM總表已下載');
+    showToast('人情數簿及喜好筆記已下載');
 }
 
 // Wedding Gift Logic
@@ -876,7 +877,7 @@ function saveEntry(e) {
 }
 
 function deleteEntry(index) {
-    if(confirm('確定刪除此記錄？')) {
+    if(confirm('確定刪除此記錄？（注意：無法還原！）')) {
         ledgerData.splice(index, 1);
         localStorage.setItem('ledgerData', JSON.stringify(ledgerData));
         renderLedger();
@@ -909,12 +910,12 @@ function exportCSV() {
     const link = document.createElement("a");
     const url = URL.createObjectURL(blob);
     link.setAttribute("href", url);
-    link.setAttribute("download", `世界仔數簿_${new Date().toISOString().slice(0,10)}.csv`);
+    link.setAttribute("download", `世界仔_人情數簿_${new Date().toISOString().slice(0,10)}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-    showToast("CSV 已下載");
+    showToast("人情數簿已下載");
 }
 
 function switchSurvivalTab(subTab) {
