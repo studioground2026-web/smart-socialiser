@@ -45,6 +45,65 @@ const greetingTargetLabels = {
 };
 
 let greetingFilterState = { mainstream: 'all', target: 'all' };
+
+const topicRescuerData = {
+    boss: [
+        "老闆，黎緊個市你有咩睇法？覺得樂唔樂觀？", "聽講老闆你以前係做Sales出身，有無咩Sales技巧教兩招？", "最近有無打Golf/做運動？", "你覺得AI會唔會好大影響我地個行業？", "有無邊間商務Lunch你覺得好食推介？", "老闆你平時飲開邊隻紅酒/威士忌多？", "黎緊公司有無話想攻邊個新Market？", "你覺唔覺得依家啲後生仔難請咗？", "老闆你當年創業個陣，最難忘係咩事？", "有無打算去邊度旅行充電？", "你覺得競爭對手最近個新動作點樣？", "仔女最近讀書點呀？(如果知佢有)", "老闆你對手錶有無研究？見你隻錶好靚。", "最近有無睇邊本管理書好介紹？", "你覺得Work From Home長遠黎講適唔適合我地？", "老闆你點睇大灣區/海外發展機會？", "有無邊個成功人士係你偶像？", "你覺得做管理層最重要係咩特質？", "最近股市咁波動，你有無心水？", "老闆你放假通常鍾意靜態定動態活動？"
+    ],
+    client: [
+        "最近生意好唔好呀？旺唔旺場？", "你地這一行依家係淡季定旺季？", "有無受到最近經濟環境影響？", "你地公司黎緊有無大搞作？", "最近有無去邊度旅行歎世界？", "你個行請人難唔難？", "有無留意最近個單新聞... 對你地有無影響？", "你平時Lunch通常係叫外賣定出去食？", "你有無玩開股票/投資？", "你地公司個Office風水幾好喎，係咪特登睇過？", "你做左呢一行幾多年架啦？", "有無小朋友呀？讀緊小學定中學？", "最近有無好睇既Netflix劇介紹？", "你覺唔覺得依家啲客要求高左？", "有無興趣得閒一齊去打波/食飯？", "你地公司有無Plan Annual Dinner？", "你覺得出年個市道會點？", "你地同競爭對手最大分別係邊度？", "最近有無試過邊間餐廳好食？", "多謝你一直支持我地，有無咩地方想我地改進？"
+    ],
+    elders: [
+        "最近身體幾好嘛？有無邊度唔舒服？", "得閒去邊度飲茶多？有無好介紹？", "當年你地結婚擺酒係點架？有無相睇下？", "依家啲後生仔女歌手，你識唔識？", "有無睇《中年好聲音》？你覺得邊個唱得好？", "你記唔記得我細個做過咩百厭野？", "最近天氣轉涼，有無煲湯飲？", "表哥/表姐最近點呀？好耐無見。", "你以前返工個陣係點架？辛苦唔辛苦？", "今晚想食中菜定西餐？", "新年/過節有無打算去邊度玩？", "你有無玩Facebook/WhatsApp Sticker呀？", "最近菜心好似好貴，你有無去街市？", "覺唔覺得依家啲電視劇無以前咁好睇？", "你以前拍拖係去邊度玩多？", "有無想去邊度旅行？帶你去呀。", "個孫最近讀書點呀？乖唔乖？", "你覺得以前香港好定依家好？", "有無食過最近好興個間餅店？", "得閒教我整你最拿手個道菜呀！"
+    ],
+    peers: [
+        "黎緊有無打算去日本/泰國旅行？", "最近有無睇《九龍城寨》或者港產片？", "抽唔抽到居屋/新樓？定係打算租樓住？", "有無買美股/Crypto？最近個市點？", "覺唔覺得最近好多兩餸飯？邊間好食？", "放假通常去邊度Hea？", "有無追開Netflix/Disney+邊套劇？", "幾時一齊去唱K/打邊爐？", "公司最近忙唔忙？有無OT？", "有無玩開咩交友App？", "覺唔覺得依家啲演唱會飛好難搶？", "最近有無做Gym/運動？", "如果中六合彩頭獎，你會做咩先？", "有無去過深圳Costco/山姆超市？", "依家人工大約去到邊個位？", "有無養寵物？定係想養？", "覺唔覺得依家出街食飯好貴？", "你鍾意Work From Home定返Office？", "有無聽過最近個單網上熱話？", "幾時結婚/擺酒呀？"
+    ],
+    new_colleague: [
+        "你住邊區架？返工搭車要幾耐？", "附近Lunch有無咩好野食推介？", "你上一份工係做邊行架？", "平時放假鍾意做咩多？", "你覺得呢度Office冷氣凍唔凍？", "有無英文名？點稱呼你方便啲？", "你用開Mac機定Windows多？", "今個Weekend有無節目呀？", "你鍾意飲咖啡定茶？", "有無睇開邊隊波/運動？", "公司附近的早餐有無好介紹？", "你之前有無用過呢個System？", "覺得呢度工作節奏習唔習慣？", "有無興趣一齊夾單叫外賣？", "你知唔知公司Wifi Password係咩？", "最近有無去旅行？", "你係咪都係做開呢個Post？", "有無養貓狗？", "你鍾意帶飯定出街食？", "收工通常會去邊度玩？"
+    ],
+    date: [
+        "如果不顧慮錢，你最想去邊度旅行？", "你放假鍾意戶外活動定留係屋企？", "你細個有無咩夢想係未實現？", "如果可以住世界任何一個城市，你會揀邊度？", "你覺得到底有無外星人？", "你最鍾意食邊國菜？", "你人生中做過最大膽既事係咩？", "如果你有一百萬，你會點用？", "你鍾意生小朋友嗎？", "你覺得完美的約會係點樣？", "有無邊套戲係你可以睇好多次都唔厭？", "你最怕咩動物/昆蟲？", "你鍾意貓定狗多啲？", "如果世界末日，你最後一餐想食咩？", "你有無咩隱藏才藝？", "你覺得兩個人相處最重要係咩？", "有無邊首歌對你好有意義？", "你鍾意收手作禮物定名牌？", "你信唔信星座/命理？", "將來退休你想過咩生活？"
+    ]
+};
+
+const workplaceTaichiMap = [
+    { input: "做唔切呀，唔好催啦！", output: "To ensure quality, we would like to propose a revised timeline. This allows us to conduct a more thorough review." },
+    { input: "唔關我事，唔好塞俾我。", output: "I believe this falls outside our current scope. Perhaps [Team Name] would be better positioned to handle this." },
+    { input: "我點知呀？睇下點先啦。", output: "Let's monitor the situation closely and circle back when we have more concrete data." },
+    { input: "你個Idea好蠢，不過你是老闆你話事。", output: "That's an interesting perspective. I'm happy to proceed with your suggestion if you believe it aligns best with our strategic goals." },
+    { input: "你Email講得唔清唔楚。", output: "Could you please provide more context or specific requirements? This will help us ensure we are on the same page." },
+    { input: "我放緊假，唔好煩我。", output: "I am currently out of the office with limited access to email. I will respond to your query as soon as I return." },
+    { input: "你錯左啦，Check清楚先講。", output: "There seems to be a slight discrepancy in the data. Would you mind double-checking the source to ensure accuracy?" },
+    { input: "無Budget呀，點做？", output: "Given the current resource constraints, we may need to prioritize key initiatives or explore alternative solutions." },
+    { input: "開會開太耐啦，講重點。", output: "Being mindful of everyone's time, perhaps we can take this discussion offline or focus on the key action items for now." },
+    { input: "我唔想開會，Email講得啦。", output: "Could we handle this via email? I believe a written summary would be more efficient for tracking purposes." },
+    { input: "你太遲通知，我做唔到。", output: "Due to the tight turnaround time and existing priorities, we may not be able to accommodate this request immediately." },
+    { input: "這不是我們當初同意的。", output: "This appears to be a deviation from our original agreement. We may need to revisit the scope and adjust the timeline accordingly." },
+    { input: "你係咪未睇我上一封Email？", output: "As mentioned in my previous correspondence, [restate point]. Please let me know if you need any further clarification." },
+    { input: "我唔同意你。", output: "I understand your point of view; however, I have some reservations regarding [point]. Perhaps we can explore other options?" },
+    { input: "這是一個愚蠢的問題。", output: "Thank you for raising that. It's a fundamental aspect worth clarifying for the benefit of the wider group." },
+    { input: "快啲覆我！", output: "I would appreciate your prompt response on this matter, as it is critical for our next steps." },
+    { input: "唔好再改啦！", output: "To avoid further delays, we suggest locking down the current version. Any additional changes may impact the final delivery date." },
+    { input: "謝謝你的無用意見。", output: "Thank you for your input. We will take it into consideration as we move forward." },
+    { input: "我真的很忙。", output: "My current bandwidth is quite limited. Let me review my schedule and get back to you on when I can address this." },
+    { input: "你自己搞掂佢。", output: "I am confident that you have the necessary tools to handle this task effectively. Let me know if you hit any major roadblocks." }
+];
+
+const farewellCakeOptions = {
+    boss: ["Lady M", "Godiva", "Paul Lafayet", "Hotel Butterfly Cookies"],
+    team: ["Chateraise", "蛋撻", "Krispy Kreme", "Mochi"],
+    others: ["藍罐曲奇", "嘉頓威化", "Family Pack Snacks"]
+};
+
+const lunchFengShuiData = {
+    poor: ["兩餸飯", "譚仔/三哥", "麥當勞", "茶記常餐", "麵包", "燒味飯", "7-Eleven 叮叮", "吉野家", "雲吞麵"],
+    normal: ["台灣野", "越南河", "日式定食", "壽司郎", "Pizza Hut", "薩莉亞", "泰國野", "拉麵", "Cafe Light Meal"],
+    rich: ["飲茶", "酒店自助餐", "西餐牛扒", "Omakase", "鼎泰豐", "海鮮火鍋", "高級居酒屋", "Fine Dining"]
+};
+
+let lunchBudgetTier = 'normal';
+const lastTopicByCategory = {};
 // EXPANDED QA DATA (20 Questions)
 const qaData = [
     // 1. æ„Ÿæƒ…台
@@ -168,6 +227,13 @@ document.addEventListener('DOMContentLoaded', () => {
     setNightMode(nightModeEnabled, false);
     switchTab('tools');
     initNativeAdMobBanner();
+    initTopicRescuer();
+    renderWorkplaceTaichiOutput();
+    calculateFarewellCake();
+    setLunchBudget('normal');
+    calculateCondolence();
+    renderCondolenceEnvelope();
+    renderSeatingChart();
 });
 
 function isCapacitorNative() {
@@ -206,6 +272,209 @@ async function initNativeAdMobBanner() {
     } catch (err) {
         console.error('Failed to initialize/show native AdMob banner:', err);
     }
+}
+
+function getRandomItem(list) {
+    if (!Array.isArray(list) || list.length === 0) return '';
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+function initTopicRescuer() {
+    const categoryEl = document.getElementById('topic-rescuer-category');
+    if (!categoryEl) return;
+    if (!categoryEl.value) categoryEl.value = 'boss';
+    nextRescueTopic();
+}
+
+function nextRescueTopic() {
+    const categoryEl = document.getElementById('topic-rescuer-category');
+    const cardEl = document.getElementById('topic-rescuer-card');
+    if (!categoryEl || !cardEl) return;
+
+    const category = categoryEl.value || 'boss';
+    const source = topicRescuerData[category] || topicRescuerData.boss;
+    let topic = getRandomItem(source);
+    if (source.length > 1 && topic === lastTopicByCategory[category]) {
+        topic = getRandomItem(source);
+    }
+    lastTopicByCategory[category] = topic;
+    cardEl.innerText = topic || '暫時未有話題。';
+}
+
+function renderWorkplaceTaichiOutput() {
+    const inputEl = document.getElementById('workplace-taichi-input');
+    const outputEl = document.getElementById('workplace-taichi-output');
+    if (!inputEl || !outputEl) return;
+
+    if (!inputEl.value && workplaceTaichiMap.length > 0) {
+        inputEl.value = workplaceTaichiMap[0].input;
+    }
+    const selected = workplaceTaichiMap.find(item => item.input === inputEl.value);
+    outputEl.innerText = selected ? selected.output : '請先選擇一句職場心聲。';
+}
+
+function copyWorkplaceTaichiOutput() {
+    const outputEl = document.getElementById('workplace-taichi-output');
+    if (!outputEl) return;
+    copyText(outputEl.innerText.trim());
+}
+
+function getCakeSuggestion(tier, perHeadBudget) {
+    const options = farewellCakeOptions[tier] || [];
+    if (options.length === 0) return '';
+    if (tier === 'boss') {
+        if (perHeadBudget >= 120) return options[0];
+        if (perHeadBudget >= 90) return options[1];
+        if (perHeadBudget >= 60) return options[2];
+        return options[3];
+    }
+    if (tier === 'team') {
+        if (perHeadBudget >= 50) return options[0];
+        if (perHeadBudget >= 28) return options[1];
+        if (perHeadBudget >= 22) return options[2];
+        return options[3];
+    }
+    if (perHeadBudget >= 25) return options[0];
+    if (perHeadBudget >= 15) return options[1];
+    return options[2];
+}
+
+function calculateFarewellCake() {
+    const totalBudget = Math.max(0, Number(document.getElementById('farewell-total-budget')?.value || 0));
+    const bossCount = Math.max(0, parseInt(document.getElementById('farewell-boss-count')?.value || '0', 10) || 0);
+    const teamCount = Math.max(0, parseInt(document.getElementById('farewell-team-count')?.value || '0', 10) || 0);
+    const othersCount = Math.max(0, parseInt(document.getElementById('farewell-others-count')?.value || '0', 10) || 0);
+
+    const bossBudget = Math.round(totalBudget * 0.4);
+    const teamBudget = Math.round(totalBudget * 0.4);
+    const othersBudget = Math.max(0, totalBudget - bossBudget - teamBudget);
+
+    const bossPerHead = bossCount > 0 ? bossBudget / bossCount : 0;
+    const teamPerHead = teamCount > 0 ? teamBudget / teamCount : 0;
+    const othersPerHead = othersCount > 0 ? othersBudget / othersCount : 0;
+
+    const bossItem = getCakeSuggestion('boss', bossPerHead);
+    const teamItem = getCakeSuggestion('team', teamPerHead);
+    const othersItem = getCakeSuggestion('others', othersPerHead);
+
+    const splitEl = document.getElementById('farewell-budget-split');
+    const summaryEl = document.getElementById('farewell-cake-summary');
+    if (splitEl) {
+        splitEl.innerText = `預算分配：老闆約 $${bossBudget}（40%）/ Team 約 $${teamBudget}（40%）/ 其他約 $${othersBudget}（20%）`;
+    }
+    if (summaryEl) {
+        summaryEl.innerText = `建議買 ${bossCount || 0} 件 ${bossItem || '高級甜點'} 俾老闆，${teamCount || 0} 份 ${teamItem || 'Team甜品'} 俾 Team，${othersCount || 0} 份 ${othersItem || '小食'} 俾其他人。`;
+    }
+}
+
+function setLunchBudget(tier) {
+    lunchBudgetTier = tier;
+    document.querySelectorAll('[data-lunch-tier]').forEach(btn => {
+        if (btn.dataset.lunchTier === tier) {
+            btn.classList.add('bg-yellow-400', 'text-black');
+            btn.classList.remove('bg-white', 'text-gray-600');
+        } else {
+            btn.classList.remove('bg-yellow-400', 'text-black');
+            btn.classList.add('bg-white', 'text-gray-600');
+        }
+    });
+    spinLunchFengShui();
+}
+
+function spinLunchFengShui() {
+    const resultEl = document.getElementById('lunch-fengshui-result');
+    if (!resultEl) return;
+    const pool = lunchFengShuiData[lunchBudgetTier] || lunchFengShuiData.normal;
+    resultEl.innerText = getRandomItem(pool) || '今日隨緣。';
+}
+
+function calculateCondolence() {
+    const baseInput = document.getElementById('condolence-base-amount');
+    const resultEl = document.getElementById('condolence-final-amount');
+    if (!baseInput || !resultEl) return;
+    const baseAmount = Math.max(0, parseInt(baseInput.value || '0', 10) || 0);
+    const finalAmount = baseAmount + 1;
+    resultEl.innerText = `$${finalAmount.toLocaleString()}`;
+}
+
+function renderCondolenceEnvelope() {
+    const previewEl = document.getElementById('condolence-envelope-preview');
+    if (!previewEl) return;
+
+    const deceasedName = (document.getElementById('condolence-deceased-name')?.value || '').trim() || '某某';
+    const senderName = (document.getElementById('condolence-sender-name')?.value || '').trim() || '某某';
+    const gender = document.getElementById('condolence-gender')?.value || 'male';
+    const religion = document.getElementById('condolence-religion')?.value || 'none';
+    const relationship = document.getElementById('condolence-relationship')?.value || 'elder';
+
+    let upperText = '';
+    if (religion === 'christian' || religion === 'catholic') {
+        upperText = '主懷安息';
+    } else if (gender === 'female') {
+        upperText = `${deceasedName}女士 靈佑`;
+    } else {
+        upperText = `${deceasedName}先生 千古`;
+    }
+
+    const lowerPrefix = relationship === 'elder' ? '晚輩' : '友';
+    const lowerText = `${lowerPrefix} ${senderName} 敬輓`;
+    const centerText = religion === 'none' ? '奠儀 輓' : '輓';
+
+    previewEl.innerHTML = `
+        <div class="mx-auto max-w-[280px] h-[220px] bg-white border border-gray-300 rounded-lg relative shadow-sm overflow-hidden">
+            <div class="absolute top-4 right-4 writing-vertical text-sm text-gray-700">${upperText}</div>
+            <div class="absolute inset-0 flex items-center justify-center text-2xl tracking-[0.25em] text-gray-900 writing-vertical font-serif">${centerText}</div>
+            <div class="absolute bottom-4 left-4 writing-vertical text-sm text-gray-700">${lowerText}</div>
+        </div>
+    `;
+}
+
+function getSeatMeta(index, total) {
+    if (index === 0) return { label: '⭐ 主家席', kind: 'host' };
+    if (index === 1) return { label: '主客', kind: 'vip' };
+    if (index === total - 1) return { label: '副客', kind: 'vip2' };
+    if (index === Math.floor(total / 2)) return { label: '買單/阿四', kind: 'payer' };
+    return { label: `席${index + 1}`, kind: 'normal' };
+}
+
+function renderSeatingChart() {
+    const container = document.getElementById('seating-chart-container');
+    if (!container) return;
+    const count = parseInt(document.getElementById('seating-count')?.value || '8', 10);
+    const validCount = [6, 8, 10, 12].includes(count) ? count : 8;
+    const radiusPercent = validCount >= 10 ? 40 : 38;
+
+    const seats = Array.from({ length: validCount }, (_, index) => {
+        const angle = ((Math.PI * 2 * index) / validCount) - (Math.PI / 2);
+        const x = 50 + Math.cos(angle) * radiusPercent;
+        const y = 50 + Math.sin(angle) * radiusPercent;
+        const meta = getSeatMeta(index, validCount);
+
+        let seatClass = 'bg-red-100 text-red-700 border-red-200';
+        if (meta.kind === 'host') seatClass = 'bg-yellow-200 text-red-800 border-yellow-300';
+        if (meta.kind === 'vip') seatClass = 'bg-amber-100 text-red-700 border-amber-300';
+        if (meta.kind === 'vip2') seatClass = 'bg-amber-100 text-red-700 border-amber-300';
+        if (meta.kind === 'payer') seatClass = 'bg-gray-200 text-gray-700 border-gray-300';
+
+        return `
+            <div class="absolute -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border text-[10px] leading-tight font-semibold flex items-center justify-center text-center px-1 ${seatClass}"
+                style="left:${x}%; top:${y}%;">
+                ${meta.label}
+            </div>
+        `;
+    }).join('');
+
+    container.innerHTML = `
+        <div class="relative mx-auto max-w-[360px] h-[360px]">
+            <div class="absolute inset-0 rounded-full border-[8px] border-red-300 bg-red-50 shadow-inner"></div>
+            <div class="absolute left-1/2 -translate-x-1/2 bottom-1 text-xs font-bold text-red-700 bg-yellow-100 border border-yellow-300 rounded-full px-3 py-1">門口</div>
+            ${seats}
+        </div>
+        <div class="mt-3 text-xs text-red-700 space-y-1">
+            <div>排位重點：主家席向門口，主客喺主家右手邊，副客喺主家左手邊。</div>
+            <div>買單/阿四位通常靠近門口，方便招呼樓面同埋埋單。</div>
+        </div>
+    `;
 }
 
 function setNightMode(enabled, persist = true) {
@@ -849,6 +1118,25 @@ function openModal(id) {
     }
     if (id === 'preference-list-modal') {
         renderPreferenceMemo();
+    }
+    if (id === 'condolence-modal') {
+        calculateCondolence();
+        renderCondolenceEnvelope();
+    }
+    if (id === 'seating-modal') {
+        renderSeatingChart();
+    }
+    if (id === 'topic-rescuer-modal') {
+        initTopicRescuer();
+    }
+    if (id === 'workplace-taichi-modal') {
+        renderWorkplaceTaichiOutput();
+    }
+    if (id === 'farewell-cake-modal') {
+        calculateFarewellCake();
+    }
+    if (id === 'lunch-fengshui-modal') {
+        spinLunchFengShui();
     }
 }
 
