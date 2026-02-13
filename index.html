@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>世界仔 Smart Socializer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4801056831983974" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body class="bg-gray-100 text-gray-900 select-none ios-font">
+
+    <div id="splash-screen" class="fixed inset-0 bg-yellow-400 z-50 flex flex-col items-center justify-center transition-opacity duration-500">
+        <h1 class="text-4xl font-bold text-white mb-2">世界仔</h1>
+        <p id="golden-sentence" class="text-white text-lg font-medium opacity-90">識人好過識字...</p>
+    </div>
+
+    <div id="top-ad-banner" class="fixed left-0 right-0 z-40 px-4" style="top: env(safe-area-inset-top);">
+        <div class="h-14 bg-white rounded-xl flex items-center justify-center shadow-sm overflow-hidden">
+            <ins
+                class="adsbygoogle"
+                style="display:block;width:100%;height:56px"
+                data-ad-client="ca-pub-4801056831983974"
+                data-ad-slot="ca-app-pub-4801056831983974/2600019543"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+
+    <main class="pb-24 min-h-screen" style="padding-top: calc(env(safe-area-inset-top) + 64px);">
+        
+        <section id="tab-ledger" class="tab-content hidden px-4 py-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold">人情數簿</h2>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm mb-6 flex justify-between items-center">
+                <div>
+                    <p class="text-gray-500 text-sm">年度結餘</p>
+                    <h3 id="ledger-balance" class="text-3xl font-bold font-mono mt-1 text-gray-900">$0</h3>
+                </div>
+                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+            </div>
+            <button onclick="openModal('add-ledger-modal')" class="w-full bg-black text-white py-3 rounded-xl font-medium mb-6 active:scale-95 transition-transform shadow-lg flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                新增記錄
+            </button>
+            <div id="ledger-list" class="space-y-3"></div>
+        </section>
+
+
+        <section id="tab-tools" class="tab-content px-4 py-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold">世界仔工具箱</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div onclick="openModal('preference-list-modal')" class="bg-white p-5 rounded-2xl shadow-sm active:scale-95 transition-transform cursor-pointer">
+                    <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1118.88 17.8M15 11a3 3 0 11-6 0 3 3 0 016 0zm3 8a6 6 0 00-12 0"></path></svg>
+                    </div>
+                    <h3 class="font-bold">喜好避雷針記錄</h3>
+                    <p class="text-xs text-gray-400">睇返每位人物卡</p>
+                </div>
+
+                <div onclick="openModal('preference-modal')" class="bg-white p-5 rounded-2xl shadow-sm active:scale-95 transition-transform cursor-pointer">
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-500 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    </div>
+                    <h3 class="font-bold">新增喜好避雷針</h3>
+                    <p class="text-xs text-gray-400">記低鍾意、避雷、需要</p>
+                </div>
+
+                <div onclick="openModal('rate-modal')" class="bg-white p-5 rounded-2xl shadow-sm active:scale-95 transition-transform cursor-pointer">
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-500 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <h3 class="font-bold">婚禮人情計數機</h3>
+                    <p class="text-xs text-gray-400">公價估算快手用</p>
+                </div>
+
+                <div onclick="openModal('relative-modal')" class="bg-white p-5 rounded-2xl shadow-sm active:scale-95 transition-transform cursor-pointer">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mb-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </div>
+                    <h3 class="font-bold">親戚稱呼計數機</h3>
+                    <p class="text-xs text-gray-400">廣東話稱呼一鍵查</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-survival" class="tab-content hidden px-4 py-6">
+            <h2 class="text-3xl font-bold mb-4">世界仔秘笈</h2>
+            <div class="bg-gray-200 p-1 rounded-lg flex mb-6">
+                <button onclick="switchSurvivalTab('qa')" id="btn-qa" class="flex-1 py-1.5 rounded-md text-sm font-medium bg-white shadow-sm transition-all">問答攻防</button>
+                <button onclick="switchSurvivalTab('greetings')" id="btn-greetings" class="flex-1 py-1.5 rounded-md text-sm font-medium text-gray-500 transition-all">祝福語</button>
+            </div>
+            <div id="content-qa" class="space-y-4 pb-10"></div>
+            <div id="content-greetings" class="hidden grid grid-cols-1 gap-3 pb-10"></div>
+        </section>
+
+        <section id="tab-about" class="tab-content hidden px-4 py-6 bg-gray-100">
+             <h2 class="text-3xl font-bold mb-6">設定</h2>
+             <div class="bg-white rounded-xl overflow-hidden shadow-sm mb-6">
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center cursor-pointer active:bg-gray-50">
+                    <span>版本</span>
+                    <span class="text-gray-400">v1.0</span>
+                </div>
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                    <span>黑暗模式 (Night Mode)</span>
+                    <input id="night-mode-toggle" type="checkbox" class="night-switch" onchange="toggleNightMode(this.checked)">
+                </div>
+                <div onclick="openModal('privacy-modal')" class="p-4 border-b border-gray-100 flex justify-between items-center cursor-pointer active:bg-gray-50">
+                    <span>私隱政策</span>
+                    <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+                <a href="javascript:void(0)" onclick="openModal('about-modal')" class="block p-4 flex justify-between items-center cursor-pointer active:bg-gray-50">
+                    <span>關於開發者</span>
+                    <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+            <button onclick="exportCSV()" class="w-full bg-white text-blue-600 py-3 rounded-xl font-medium shadow-sm active:bg-blue-50 mb-3">匯出人情數簿記錄</button>
+            <button onclick="exportMasterCRM()" class="w-full bg-white text-indigo-600 py-3 rounded-xl font-medium shadow-sm active:bg-indigo-50 mb-3">匯出人脈總表 (Export Master CRM)</button>
+            <button onclick="clearAllData()" class="w-full bg-white text-red-500 py-3 rounded-xl font-medium shadow-sm active:bg-red-50">清除所有資料</button>
+            <p class="text-center text-gray-400 text-xs mt-8">© 2026 Ground Studio. All rights reserved.</p>
+        </section>
+    </main>
+
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 pb-safe-bottom pt-2 px-6 flex justify-between items-center z-40 text-xs font-medium text-gray-400">
+        <button onclick="switchTab('ledger')" id="nav-ledger" class="flex flex-col items-center gap-1 w-16">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            數簿
+        </button>
+        <button onclick="switchTab('tools')" id="nav-tools" class="flex flex-col items-center gap-1 w-16 text-yellow-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+            工具
+        </button>
+        <button onclick="switchTab('survival')" id="nav-survival" class="flex flex-col items-center gap-1 w-16">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+            秘笈
+        </button>
+        <button onclick="switchTab('about')" id="nav-about" class="flex flex-col items-center gap-1 w-16">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            設定
+        </button>
+    </nav>
+
+    <div id="add-ledger-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('add-ledger-modal')"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl p-6 modal-enter">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">新增記錄</h3>
+                <button onclick="closeModal('add-ledger-modal')" class="text-blue-500 font-bold">取消</button>
+            </div>
+            <form id="ledger-form" onsubmit="saveEntry(event)" class="space-y-4">
+                <div class="bg-gray-200 p-1 rounded-lg flex">
+                    <button type="button" onclick="setEntryType('in')" id="type-in" class="flex-1 py-2 rounded-md font-medium bg-white shadow-sm text-green-600">入賬 (+)</button>
+                    <button type="button" onclick="setEntryType('out')" id="type-out" class="flex-1 py-2 rounded-md font-medium text-gray-500">出賬 (-)</button>
+                </div>
+                <input type="hidden" id="entry-type" value="in">
+                <div class="bg-white rounded-xl px-4 py-2">
+                    <label class="text-xs text-gray-500">金額</label>
+                    <input type="number" id="entry-amount" inputmode="decimal" class="w-full text-3xl font-bold font-mono outline-none" placeholder="0" required>
+                </div>
+                <div class="bg-white rounded-xl px-4 py-2">
+                    <label class="text-xs text-gray-500">對象</label>
+                    <input type="text" id="entry-name" list="ledger-name-suggestions" class="w-full text-lg outline-none" placeholder="例如：三姑姐" required>
+                    <datalist id="ledger-name-suggestions"></datalist>
+                    <div class="h-px bg-gray-100 my-2"></div>
+                    <label class="text-xs text-gray-500">備註/場合</label>
+                    <input type="text" id="entry-note" class="w-full text-lg outline-none" placeholder="例如：表妹結婚">
+                </div>
+                <button type="submit" class="w-full bg-yellow-400 text-black font-bold py-3.5 rounded-xl mt-4">儲存記錄</button>
+            </form>
+            <div class="h-safe-bottom"></div>
+        </div>
+    </div>
+
+    <div id="rate-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('rate-modal')"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl h-[90vh] flex flex-col modal-enter">
+            <div class="p-6 pb-2 flex justify-between items-center bg-gray-100 rounded-t-3xl border-b border-gray-200">
+                <h3 class="text-xl font-bold">人情大全</h3>
+                <button onclick="closeModal('rate-modal')" class="text-blue-500 font-bold">關閉</button>
+            </div>
+            <div class="overflow-y-auto p-6 space-y-6 flex-1 pb-safe-bottom">
+                
+                <div class="bg-white rounded-2xl p-5 shadow-sm space-y-4">
+                    <div>
+                        <label class="text-xs text-gray-500 font-bold uppercase ml-1">場地 / 類型</label>
+                        <select id="wg-venue" onchange="calculateWeddingGift()" class="w-full mt-1 bg-gray-100 p-3 rounded-xl text-lg font-medium outline-none appearance-none">
+                            <option value="hotel_high">高級酒店 ($1,500)</option>
+                            <option value="hotel_std">一般酒店 ($1,000)</option>
+                            <option value="club">私人會所 ($1,000)</option>
+                            <option value="special">特色宴會 ($1,000)</option>
+                            <option value="restaurant_cn">酒樓晚宴 ($800)</option>
+                            <option value="lunch">午宴 ($800)</option>
+                            <option value="restaurant_w">西式餐廳 ($800)</option>
+                            <option value="cocktail">雞尾酒會 ($800)</option>
+                            <option value="ceremony">觀禮 ($500)</option>
+                            <option value="cake">只送餅卡 ($300)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-gray-500 font-bold uppercase ml-1">出席</label>
+                            <select id="wg-attend" onchange="calculateWeddingGift()" class="w-full mt-1 bg-gray-100 p-3 rounded-xl text-lg font-medium outline-none">
+                                <option value="yes">去飲</option>
+                                <option value="no">唔去</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-gray-500 font-bold uppercase ml-1">人數</label>
+                            <input type="number" id="wg-count" value="1" min="1" oninput="calculateWeddingGift()" class="w-full mt-1 bg-gray-100 p-3 rounded-xl text-lg font-medium outline-none text-center">
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <div class="text-center text-xs text-gray-400 mb-1">建議公價 (港幣)</div>
+                        <div id="wg-amount" class="text-center text-4xl font-bold font-mono text-red-500">$1,500</div>
+                        <div id="wg-note" class="text-center text-xs text-gray-400 mt-1"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-gray-500 mb-2 uppercase">利是封寫法教學</h4>
+                    <div class="bg-red-600 text-yellow-400 rounded-xl p-6 relative h-48 shadow-md border border-red-700 font-serif overflow-hidden">
+                        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffd700 1px, transparent 1px); background-size: 10px 10px;"></div>
+                        <div class="absolute top-4 right-4 flex flex-col items-center gap-1">
+                            <span class="text-xs opacity-80 writing-vertical">準新人名字</span>
+                            <span class="font-bold text-lg writing-vertical">笑納</span>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full">
+                            <div class="text-2xl font-bold tracking-[0.2em] drop-shadow-md">百年好合</div>
+                            <div class="text-xs opacity-70 mt-1 tracking-widest">(祝福語)</div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 flex flex-col items-center gap-1">
+                            <span class="text-xs opacity-80 writing-vertical">你個名</span>
+                            <span class="font-bold text-lg writing-vertical">敬賀</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-center text-gray-400 mt-2">利是不必封口，封口向下摺即可。</p>
+                </div>
+
+                <div class="pb-10">
+                    <h4 class="text-sm font-bold text-gray-500 mb-2 uppercase">祝福語懶人包</h4>
+                    <div class="bg-white rounded-2xl p-2 shadow-sm">
+                        <div class="flex p-1 bg-gray-100 rounded-xl mb-3">
+                            <button onclick="switchWgBlessing('idioms')" id="wg-btn-idioms" class="flex-1 py-1.5 rounded-lg text-sm font-medium bg-white shadow-sm transition-all">四字成語</button>
+                            <button onclick="switchWgBlessing('lines')" id="wg-btn-lines" class="flex-1 py-1.5 rounded-lg text-sm font-medium text-gray-500 transition-all">短句</button>
+                            <button onclick="switchWgBlessing('english')" id="wg-btn-english" class="flex-1 py-1.5 rounded-lg text-sm font-medium text-gray-500 transition-all">英文</button>
+                        </div>
+                        <div id="wg-blessing-list" class="space-y-1 max-h-60 overflow-y-auto px-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="relative-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('relative-modal')"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl h-[90vh] flex flex-col modal-enter">
+            <div class="p-6 pb-2 flex justify-between items-center bg-gray-100 rounded-t-3xl border-b border-gray-200">
+                <h3 class="text-xl font-bold">稱呼計算機</h3>
+                <button onclick="closeModal('relative-modal')" class="text-blue-500 font-bold">關閉</button>
+            </div>
+            <div id="relative-calc-container" class="overflow-y-auto p-6 space-y-4 flex-1 pb-safe-bottom"></div>
+        </div>
+    </div>
+
+    <div id="preference-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('preference-modal')"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl p-6 modal-enter max-h-[88vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">喜好避雷針</h3>
+                <button onclick="closeModal('preference-modal')" class="text-blue-500 font-bold">取消</button>
+            </div>
+            <form id="preference-form" onsubmit="savePreference(event)" class="space-y-4">
+                <input type="hidden" id="preference-id">
+                <div class="bg-white rounded-xl px-4 py-2">
+                    <label class="text-xs text-gray-500">類別</label>
+                    <select id="preference-category" class="w-full text-lg outline-none py-1" required>
+                        <option value="親戚">親戚</option>
+                        <option value="朋友">朋友</option>
+                        <option value="老闆">老闆</option>
+                        <option value="客戶">客戶</option>
+                        <option value="同事">同事</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="bg-white rounded-xl px-4 py-2">
+                    <label class="text-xs text-gray-500">對象名稱</label>
+                    <input type="text" id="preference-name" list="preference-name-suggestions" class="w-full text-lg outline-none" placeholder="例如：阿May" required>
+                    <datalist id="preference-name-suggestions"></datalist>
+                    <div class="h-px bg-gray-100 my-2"></div>
+                    <label class="text-xs text-gray-500">鍾意</label>
+                    <input type="text" id="preference-like" class="w-full text-base outline-none" placeholder="例如：食辣、飲咖啡">
+                    <div class="h-px bg-gray-100 my-2"></div>
+                    <label class="text-xs text-gray-500">討厭 / 避雷</label>
+                    <input type="text" id="preference-hate" class="w-full text-base outline-none" placeholder="例如：芫荽、花生">
+                    <div class="h-px bg-gray-100 my-2"></div>
+                    <label class="text-xs text-gray-500">需要</label>
+                    <input type="text" id="preference-needs" class="w-full text-base outline-none" placeholder="例如：搵工中、需要轉工介紹">
+                    <div class="h-px bg-gray-100 my-2"></div>
+                    <label class="text-xs text-gray-500">備忘</label>
+                    <input type="text" id="preference-memo" class="w-full text-base outline-none" placeholder="例如：下次食飯記得book窗邊">
+                </div>
+                <button type="submit" class="w-full bg-yellow-400 text-black font-bold py-3.5 rounded-xl mt-4">儲存偏好</button>
+            </form>
+            <div class="h-safe-bottom"></div>
+        </div>
+    </div>
+
+    <div id="preference-list-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('preference-list-modal')"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl h-[90vh] flex flex-col modal-enter">
+            <div class="p-6 pb-2 flex justify-between items-center bg-gray-100 rounded-t-3xl border-b border-gray-200">
+                <h3 class="text-xl font-bold">喜好避雷針記錄</h3>
+                <button onclick="closeModal('preference-list-modal')" class="text-blue-500 font-bold">關閉</button>
+            </div>
+            <div class="px-6 pt-4 pb-2">
+                <select id="preference-category-filter" onchange="renderPreferenceMemo()" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm outline-none">
+                    <option value="all">全部類別</option>
+                    <option value="親戚">親戚</option>
+                    <option value="朋友">朋友</option>
+                    <option value="老闆">老闆</option>
+                    <option value="客戶">客戶</option>
+                    <option value="同事">同事</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+            <div id="preference-list" class="overflow-y-auto p-6 space-y-3 flex-1 pb-safe-bottom"></div>
+        </div>
+    </div>
+
+    <div id="privacy-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('privacy-modal')"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl h-[90vh] flex flex-col modal-enter">
+            <div class="p-6 pb-2 flex justify-between items-center bg-gray-100 rounded-t-3xl border-b border-gray-200">
+                <h3 class="text-xl font-bold">私隱政策</h3>
+                <button onclick="closeModal('privacy-modal')" class="text-blue-500 font-bold">關閉</button>
+            </div>
+            <div class="overflow-y-auto p-6 pb-safe-bottom">
+                <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                    <p>生效日期：2026年2月13日</p>
+
+                    <h4 class="font-bold text-gray-900">1. 資料存儲與安全</h4>
+                    <p>「世界仔」(下稱本程式) 採用 **離線優先 (Offline-First)** 架構。所有用戶輸入的資料（包括但不限於人情記帳、親友喜好、通訊錄名單），均只會存儲於閣下裝置的瀏覽器本地緩存 (Local Storage) 中。</p>
+                    <p class="font-bold text-red-500">本程式開發者無法讀取、上傳、分享或備份閣下的任何個人資料。因此，閣下需自行承擔資料保管的全部責任。</p>
+
+                    <h4 class="font-bold text-gray-900">2. 資料遺失免責聲明</h4>
+                    <p>由於資料僅存於本地，以下情況可能導致資料永久遺失，本程式及其開發者概不負責，亦無法提供資料恢復服務：</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>用戶清除瀏覽器緩存 (Clear Cache) 或記錄。</li>
+                        <li>用戶卸載本程式或重置手機原廠設定。</li>
+                        <li>手機損壞、遺失或瀏覽器發生故障。</li>
+                        <li>iOS/Android 系統自動清除長期未使用的網站數據。</li>
+                    </ul>
+                    <p>強烈建議閣下定期使用「設定」頁面中的 **「匯出 CSV」** 功能進行備份。</p>
+
+                    <h4 class="font-bold text-gray-900">3. 廣告與第三方服務</h4>
+                    <p>本程式免費版可能包含由 Google AdMob 或其他第三方提供的廣告服務。這些服務可能會使用 Cookies 或類似技術來收集非個人識別資訊以提供廣告。閣下使用本程式即代表同意這些第三方服務的私隱條款。</p>
+
+                    <h4 class="font-bold text-gray-900">4. 條款修訂</h4>
+                    <p>開發者保留隨時修改本政策的權利，更新後的條款將於本頁面發布，恕不另行通知。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('about-modal')"></div>
+        <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl h-[90vh] flex flex-col modal-enter">
+            <div class="p-6 pb-2 flex justify-between items-center bg-gray-100 rounded-t-3xl border-b border-gray-200">
+                <h3 class="text-xl font-bold">關於開發者</h3>
+                <button onclick="closeModal('about-modal')" class="text-blue-500 font-bold">關閉</button>
+            </div>
+            <div class="overflow-y-auto p-6 pb-safe-bottom">
+                <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
+                    <div class="text-center mb-4">
+                        <h3 class="font-bold text-lg text-gray-900">世界仔 Smart Socializer</h3>
+                        <p class="text-xs text-gray-400">V 1.0</p>
+                    </div>
+
+                    <h4 class="font-bold text-gray-900">開發理念</h4>
+                    <p>本程式由香港獨立開發者製作，旨在為廣大市民提供一個簡單、地道的人情世故生存工具。在這個講求「識做人」的社會，希望這款工具能助你化解尷尬，步步高陞。</p>
+
+                    <h4 class="font-bold text-gray-900">重要免責聲明 (Disclaimer)</h4>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>
+                            <strong>人情公價：</strong>「人情大全」內之金額數據僅綜合市場資訊作參考，並非硬性指標。實際金額應視乎閣下與對方的交情、經濟狀況及當日心情而定。如因參考本程式建議而導致任何社交尷尬或被指「孤寒」，開發者恕不負責。
+                        </li>
+                        <li>
+                            <strong>問答攻防：</strong>「世界仔秘笈」提供的對答建議僅供娛樂及參考。請閣下根據實際語境及長輩脾氣自行判斷是否採用。如因使用程式內的「幽默」或「遊花園」對答而導致家庭不和或被長輩責罵，本程式概不承擔任何責任。
+                        </li>
+                        <li>
+                            <strong>記帳功能：</strong>「人情數簿」僅供個人備忘用途，不具備任何法律效力，亦不應作為正式會計、稅務申報或債務追討的依據。
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6 pt-4 border-t border-gray-200 text-center">
+                        <p class="text-xs text-gray-400">© 2026 Ground Studio. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed top-safe-top left-1/2 transform -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-sm font-medium opacity-0 transition-opacity pointer-events-none z-50 mt-4">
+        已複製到剪貼簿
+    </div>
+
+    <script src="relative-calc.js"></script>
+    <script src="app.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>

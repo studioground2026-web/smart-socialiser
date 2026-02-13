@@ -1,0 +1,156 @@
+/* iOS System Fonts */
+.ios-font {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Safe Area Insets for Notch/Home Bar */
+.pt-safe-top {
+    padding-top: env(safe-area-inset-top);
+}
+.pb-safe-bottom {
+    padding-bottom: calc(50px + env(safe-area-inset-bottom));
+}
+.h-safe-bottom {
+    height: env(safe-area-inset-bottom);
+}
+.top-safe-top {
+    top: env(safe-area-inset-top);
+}
+
+/* Hide Scrollbar but allow scroll */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Modal Animation */
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+.modal-enter {
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom Utilities */
+.active-tab {
+    color: #CA8A04; /* yellow-600 */
+}
+.active-tab svg {
+    color: #CA8A04;
+}
+
+/* Vertical Writing Mode Support */
+.writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+/* ToolRelativeCalc helpers */
+.std-input {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: #ffffff;
+}
+.help-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    border: 1px solid #d1d5db;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+.modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px;
+}
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* Night Mode toggle switch */
+.night-switch {
+    appearance: none;
+    width: 44px;
+    height: 26px;
+    border-radius: 9999px;
+    background: #d1d5db;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.night-switch::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    background: #ffffff;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.2s ease;
+}
+.night-switch:checked {
+    background: #2563eb;
+}
+.night-switch:checked::after {
+    transform: translateX(18px);
+}
+
+/* Night Mode palette overrides */
+body.night-mode {
+    background: #0b1220;
+    color: #e5e7eb;
+}
+body.night-mode .bg-gray-100 {
+    background-color: #0f172a !important;
+}
+body.night-mode .bg-white {
+    background-color: #1f2937 !important;
+}
+body.night-mode .bg-gray-200 {
+    background-color: #374151 !important;
+}
+body.night-mode .text-gray-900 {
+    color: #f3f4f6 !important;
+}
+body.night-mode .text-gray-600,
+body.night-mode .text-gray-500,
+body.night-mode .text-gray-400,
+body.night-mode .text-gray-300 {
+    color: #9ca3af !important;
+}
+body.night-mode .border-gray-100,
+body.night-mode .border-gray-200,
+body.night-mode .border-gray-300 {
+    border-color: #374151 !important;
+}
+body.night-mode .bg-black\/80 {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+}
