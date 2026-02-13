@@ -146,6 +146,10 @@ body.night-mode .text-gray-400,
 body.night-mode .text-gray-300 {
     color: #9ca3af !important;
 }
+body.night-mode .text-gray-800,
+body.night-mode .text-gray-700 {
+    color: #d1d5db !important;
+}
 body.night-mode .border-gray-100,
 body.night-mode .border-gray-200,
 body.night-mode .border-gray-300 {
