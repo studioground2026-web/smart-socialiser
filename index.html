@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>世界仔 Smart Socializer</title>
+    <title>世界仔 - 識做人好過識字，有世界仔唔駛靠運氣！</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
@@ -14,7 +14,7 @@
 
     <div id="splash-screen" class="fixed inset-0 bg-yellow-400 z-50 flex flex-col items-center justify-center transition-opacity duration-500">
         <h1 class="text-4xl font-bold text-white mb-2">世界仔</h1>
-        <p id="golden-sentence" class="text-white text-lg font-medium opacity-90">識人好過識字...</p>
+        <p id="golden-sentence" class="text-white text-lg font-medium opacity-90">識做人好過識字，有世界仔唔駛靠運氣！</p>
     </div>
 
     <main class="pb-24 min-h-screen" style="padding-top: calc(env(safe-area-inset-top) + 64px);">
@@ -50,16 +50,16 @@
                     <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-3">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9 9 0 1118.88 17.8M15 11a3 3 0 11-6 0 3 3 0 016 0zm3 8a6 6 0 00-12 0"></path></svg>
                     </div>
-                    <h3 class="font-bold">喜好避雷針記錄</h3>
-                    <p class="text-xs text-gray-400">睇返每位人物卡</p>
+                    <h3 class="font-bold">喜好筆記</h3>
+                    <p class="text-xs text-gray-400">睇返每位人物喜好</p>
                 </div>
 
                 <div onclick="openModal('preference-modal')" class="bg-white p-5 rounded-2xl shadow-sm active:scale-95 transition-transform cursor-pointer">
                     <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-500 mb-3">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                     </div>
-                    <h3 class="font-bold">新增喜好避雷針</h3>
-                    <p class="text-xs text-gray-400">記低鍾意、避雷、需要</p>
+                    <h3 class="font-bold">新增喜好筆記</h3>
+                    <p class="text-xs text-gray-400">記低鍾意、討厭、需要</p>
                 </div>
 
                 <div onclick="openModal('relative-modal')" class="bg-white p-5 rounded-2xl shadow-sm active:scale-95 transition-transform cursor-pointer">
@@ -99,7 +99,7 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M5 10v6a2 2 0 002 2h10a2 2 0 002-2v-6M7 10V8a5 5 0 0110 0v2"></path></svg>
                     </div>
                     <h3 class="font-bold">散水餅雷達</h3>
-                    <p class="text-xs text-gray-400">預算分級派甜品</p>
+                    <p class="text-xs text-gray-400">預算分級派散水餅</p>
                 </div>
 
                 <div onclick="openModal('lunch-fengshui-modal')" class="bg-white p-5 rounded-2xl shadow-sm active:scale-95 transition-transform cursor-pointer">
@@ -145,7 +145,7 @@
                     <span class="text-gray-400">v1.0</span>
                 </div>
                 <div class="p-4 border-b border-gray-100 flex justify-between items-center">
-                    <span>黑暗模式 (Night Mode)</span>
+                    <span>黑暗模式</span>
                     <input id="night-mode-toggle" type="checkbox" class="night-switch" onchange="toggleNightMode(this.checked)">
                 </div>
                 <div onclick="openModal('privacy-modal')" class="p-4 border-b border-gray-100 flex justify-between items-center cursor-pointer active:bg-gray-50">
@@ -158,8 +158,8 @@
                 </a>
             </div>
             <button onclick="exportCSV()" class="w-full bg-white text-blue-600 py-3 rounded-xl font-medium shadow-sm active:bg-blue-50 mb-3">匯出人情數簿記錄</button>
-            <button onclick="exportMasterCRM()" class="w-full bg-white text-indigo-600 py-3 rounded-xl font-medium shadow-sm active:bg-indigo-50 mb-3">匯出人脈總表 (Export Master CRM)</button>
-            <button onclick="clearAllData()" class="w-full bg-white text-red-500 py-3 rounded-xl font-medium shadow-sm active:bg-red-50">清除所有資料</button>
+            <button onclick="exportMasterCRM()" class="w-full bg-white text-indigo-600 py-3 rounded-xl font-medium shadow-sm active:bg-indigo-50 mb-3">匯出人情數簿及喜好筆記</button>
+            <button onclick="clearAllData()" class="w-full bg-white text-red-500 py-3 rounded-xl font-medium shadow-sm active:bg-red-50">清除所有資料（注意：清除後無法還原）</button>
             <p class="text-center text-gray-400 text-xs mt-8">© 2026 Ground Studio. All rights reserved.</p>
         </section>
     </main>
@@ -409,12 +409,12 @@
                 <div class="bg-white rounded-xl p-4 border border-gray-200">
                     <label class="text-xs text-gray-500">對象類別</label>
                     <select id="topic-rescuer-category" class="w-full mt-2 bg-gray-100 border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none" onchange="nextRescueTopic()">
-                        <option value="boss">老闆 (Boss)</option>
-                        <option value="client">客人 (Client)</option>
-                        <option value="elders">長輩 (Elders)</option>
-                        <option value="peers">平輩 (Peers)</option>
-                        <option value="new_colleague">新同事 (New Colleague)</option>
-                        <option value="date">情侶 (Date)</option>
+                        <option value="boss">老闆</option>
+                        <option value="client">客人</option>
+                        <option value="elders">長輩</option>
+                        <option value="peers">平輩</option>
+                        <option value="new_colleague">新同事</option>
+                        <option value="date">情侶</option>
                     </select>
                 </div>
                 <div class="bg-white rounded-2xl border border-cyan-200 p-6 min-h-[180px] flex items-center justify-center">
@@ -533,7 +533,7 @@
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('preference-modal')"></div>
         <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl p-6 modal-enter max-h-[88vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">喜好避雷針</h3>
+                <h3 class="text-xl font-bold">喜好筆記</h3>
                 <button onclick="closeModal('preference-modal')" class="text-blue-500 font-bold">取消</button>
             </div>
             <form id="preference-form" onsubmit="savePreference(event)" class="space-y-4">
@@ -551,22 +551,22 @@
                 </div>
                 <div class="bg-white rounded-xl px-4 py-2">
                     <label class="text-xs text-gray-500">對象名稱</label>
-                    <input type="text" id="preference-name" list="preference-name-suggestions" class="w-full text-lg outline-none" placeholder="例如：阿May" required>
+                    <input type="text" id="preference-name" list="preference-name-suggestions" class="w-full text-lg outline-none" placeholder="例如：Regina" required>
                     <datalist id="preference-name-suggestions"></datalist>
                     <div class="h-px bg-gray-100 my-2"></div>
                     <label class="text-xs text-gray-500">鍾意</label>
                     <input type="text" id="preference-like" class="w-full text-base outline-none" placeholder="例如：食辣、飲咖啡">
                     <div class="h-px bg-gray-100 my-2"></div>
-                    <label class="text-xs text-gray-500">討厭 / 避雷</label>
+                    <label class="text-xs text-gray-500">討厭</label>
                     <input type="text" id="preference-hate" class="w-full text-base outline-none" placeholder="例如：芫荽、花生">
                     <div class="h-px bg-gray-100 my-2"></div>
                     <label class="text-xs text-gray-500">需要</label>
                     <input type="text" id="preference-needs" class="w-full text-base outline-none" placeholder="例如：搵工中、需要轉工介紹">
                     <div class="h-px bg-gray-100 my-2"></div>
                     <label class="text-xs text-gray-500">備忘</label>
-                    <input type="text" id="preference-memo" class="w-full text-base outline-none" placeholder="例如：下次食飯記得book窗邊">
+                    <input type="text" id="preference-memo" class="w-full text-base outline-none" placeholder="例如：怕陽光">
                 </div>
-                <button type="submit" class="w-full bg-yellow-400 text-black font-bold py-3.5 rounded-xl mt-4">儲存偏好</button>
+                <button type="submit" class="w-full bg-yellow-400 text-black font-bold py-3.5 rounded-xl mt-4">儲存</button>
             </form>
             <div class="h-safe-bottom"></div>
         </div>
@@ -576,7 +576,7 @@
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal('preference-list-modal')"></div>
         <div class="absolute bottom-0 left-0 right-0 bg-gray-100 rounded-t-3xl h-[90vh] flex flex-col modal-enter">
             <div class="p-6 pb-2 flex justify-between items-center bg-gray-100 rounded-t-3xl border-b border-gray-200">
-                <h3 class="text-xl font-bold">喜好避雷針記錄</h3>
+                <h3 class="text-xl font-bold">喜好筆記</h3>
                 <button onclick="closeModal('preference-list-modal')" class="text-blue-500 font-bold">關閉</button>
             </div>
             <div class="px-6 pt-4 pb-2">
@@ -603,10 +603,10 @@
             </div>
             <div class="overflow-y-auto p-6 pb-safe-bottom">
                 <div class="space-y-4 text-sm text-gray-600 leading-relaxed">
-                    <p>生效日期：2026年2月13日</p>
+                    <p>生效日期：2026年2月14日</p>
 
                     <h4 class="font-bold text-gray-900">1. 資料存儲與安全</h4>
-                    <p>「世界仔」(下稱本程式) 採用 **離線優先 (Offline-First)** 架構。所有用戶輸入的資料（包括但不限於人情記帳、親友喜好、通訊錄名單），均只會存儲於閣下裝置的瀏覽器本地緩存 (Local Storage) 中。</p>
+                    <p>「世界仔」(下稱本程式) 採用離線優先 (Offline-First)架構。所有用戶輸入的資料（包括但不限於人情記帳、親友喜好、通訊錄名單），均只會存儲於閣下裝置的瀏覽器本地緩存 (Local Storage) 中。</p>
                     <p class="font-bold text-red-500">本程式開發者無法讀取、上傳、分享或備份閣下的任何個人資料。因此，閣下需自行承擔資料保管的全部責任。</p>
 
                     <h4 class="font-bold text-gray-900">2. 資料遺失免責聲明</h4>
@@ -617,7 +617,7 @@
                         <li>手機損壞、遺失或瀏覽器發生故障。</li>
                         <li>iOS/Android 系統自動清除長期未使用的網站數據。</li>
                     </ul>
-                    <p>強烈建議閣下定期使用「設定」頁面中的 **「匯出 CSV」** 功能進行備份。</p>
+                    <p>強烈建議閣下定期使用「設定」頁面中的匯出功能進行備份。</p>
 
                     <h4 class="font-bold text-gray-900">3. 廣告與第三方服務</h4>
                     <p>本程式免費版可能包含由 Google AdMob 或其他第三方提供的廣告服務。這些服務可能會使用 Cookies 或類似技術來收集非個人識別資訊以提供廣告。閣下使用本程式即代表同意這些第三方服務的私隱條款。</p>
