@@ -1,9 +1,10 @@
-﻿// Data & State
+// Data & State
 let currentTab = 'tools'; 
 let ledgerData = JSON.parse(localStorage.getItem('ledgerData')) || [];
 let preferenceData = JSON.parse(localStorage.getItem('preferenceData')) || [];
 let preferenceFilterState = { category: 'all' };
 let nightModeEnabled = localStorage.getItem('nightModeEnabled') === 'true';
+const ADMOB_BANNER_UNIT_ID = 'ca-app-pub-4801056831983974/2600019543';
 
 // Wedding Gift Data
 const weddingData = {
@@ -166,7 +167,46 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNameSuggestions();
     setNightMode(nightModeEnabled, false);
     switchTab('tools');
+    initNativeAdMobBanner();
 });
+
+function isCapacitorNative() {
+    return !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform());
+}
+
+function resolveAdMobEnum(admobPlugin, enumKey, fallback) {
+    if (!admobPlugin || !admobPlugin[enumKey]) return fallback;
+    return admobPlugin[enumKey][fallback] || fallback;
+}
+
+async function initNativeAdMobBanner() {
+    if (!isCapacitorNative()) return;
+    const admob = window.Capacitor?.Plugins?.AdMob;
+    if (!admob || typeof admob.initialize !== 'function' || typeof admob.showBanner !== 'function') {
+        console.warn('AdMob plugin not found. Install @capacitor-community/admob first.');
+        return;
+    }
+
+    try {
+        await admob.initialize({
+            requestTrackingAuthorization: true,
+            initializeForTesting: false
+        });
+
+        const adSize = resolveAdMobEnum(admob, 'BannerAdSize', 'BANNER');
+        const adPosition = resolveAdMobEnum(admob, 'BannerAdPosition', 'TOP_CENTER');
+
+        await admob.showBanner({
+            adId: ADMOB_BANNER_UNIT_ID,
+            adSize,
+            position: adPosition,
+            margin: 0,
+            isTesting: false
+        });
+    } catch (err) {
+        console.error('Failed to initialize/show native AdMob banner:', err);
+    }
+}
 
 function setNightMode(enabled, persist = true) {
     nightModeEnabled = !!enabled;
